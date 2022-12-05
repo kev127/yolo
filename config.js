@@ -1,10 +1,16 @@
 var config = {}
 
-// Update to have your correct username and password
+const {
+    DB_USER,
+    DB_PASSWORD,
+    DB_HOST,
+} = process.env;
+
 config.mongoURI = {
-    production: 'mongodb+srv://kev125:Rf7ebDwjS8gRHatM@yolo.1kvi6ui.mongodb.net/?retryWrites=true&w=majority',
-    development: 'mongodb+srv://kev125:Rf7ebDwjS8gRHatM@yolo.1kvi6ui.mongodb.net/?retryWrites=true&w=majority',
-    test: 'mongodb+srv://kev125:Rf7ebDwjS8gRHatM@yolo.1kvi6ui.mongodb.net/?retryWrites=true&w=majority',
-}
-module.exports = config;
- 
+    production: process.env.MONGO_DB_PROD_URI,
+    development: `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:27017/yolo?authSource=admin`,
+    test: process.env.MONGO_DB_TEST_URI,
+  };
+  module.exports = config;
+  Footer
+  
