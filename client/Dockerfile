@@ -1,6 +1,6 @@
 FROM node:18-alpine
-WORKDIR /app
+WORKDIR /client
 COPY . .
-RUN npm imstall
+RUN npm install
 CMD ["npm", "start"]
-EXPOSE 8000
+EXPOSE 5000
