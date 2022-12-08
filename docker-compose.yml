@@ -6,20 +6,22 @@ services:
     image: kev125/backend
     container_name: backendContainer
     ports:
-      - '8000:8000'
+      - '5000:5000'
     networks:
-      - mongo_network
+      - my_network
     depends_on:
       - mongo
+    env_file:
+      - ./.env
 
   client:
     build: ./client
     image: kev125/client
     container_name: clientContainer
     ports:
-      - '5000:5000'
+      - '3000:80'
     networks:
-      - mongo_network
+      - my_network
     depends_on:
       - mongo
 
@@ -28,9 +30,6 @@ services:
     container_name: mongodb
     ports:
       - '27017:27017'
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: kev125
-      MONGO_INITDB_ROOT_PASSWORD: Rf7ebDwjS8gRHatM
     volumes:
       - database:/data/db
     networks:
